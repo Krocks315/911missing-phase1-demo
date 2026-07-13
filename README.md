@@ -22,7 +22,9 @@ content, clearly labeled.
   (`demo_911missing_reports`, `demo_911missing_tips`) and an isolated storage
   bucket (`demo-911missing-photos`). Insert-only anon access; no public read
   access to submitted data.
-- Deployed on Vercel, connected to this GitHub repo for auto-deploy.
+- Deployed on Vercel, connected to this GitHub repo for auto-deploy. Vercel
+  auto-detects the Flask `app` instance in `app.py` — no custom `vercel.json`
+  build config needed (per Vercel's current Flask deployment docs).
 
 ## Environment variables (set in Vercel, never committed)
 
