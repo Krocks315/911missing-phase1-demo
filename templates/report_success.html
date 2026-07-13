@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block title %}Report Received — {{ org }}{% endblock %}
+{% block content %}
+<div class="card" style="text-align:center;">
+  {% if urgent %}
+    <span class="badge urgent">URGENT — Flagged for priority review</span>
+  {% else %}
+    <span class="badge active">Received</span>
+  {% endif %}
+  <h1 style="margin-top:16px;">Report received.</h1>
+  <p class="lead">This demo submission for <strong>{{ name }}</strong> was saved
+  successfully to the demo intake database.</p>
+  {% if case_id %}
+  <p class="muted">Demo record ID: <code>{{ case_id }}</code></p>
+  {% endif %}
+  <p class="muted">In production, this is the moment a human moderator reviews
+  the case and — once verified — the network mobilization (Phase 2) begins.</p>
+  <a class="btn secondary" href="{{ url_for('home') }}">Back to Home</a>
+</div>
+{% endblock %}

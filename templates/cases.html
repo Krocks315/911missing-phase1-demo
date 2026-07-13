@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block title %}Sample Cases — {{ org }}{% endblock %}
+{% block content %}
+<h1>Sample Case Listing</h1>
+<p class="lead muted">These are invented, placeholder cases shown to demonstrate the
+case-card layout only. None of these are real people or real missing-persons
+data.</p>
+
+{% for c in cases %}
+<div class="card">
+  <div class="case-row">
+    <div class="placeholder-photo" aria-hidden="true">
+      <svg width="34" height="34" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="12" cy="8" r="4" fill="#f2a541"/>
+        <path d="M4 20c0-4.4 3.6-7 8-7s8 2.6 8 7" fill="#f2a541"/>
+      </svg>
+    </div>
+    <div style="flex:1;">
+      <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:8px;">
+        <h2 style="margin:0;">{{ c.name }}</h2>
+        <span class="badge {{ c.status_color }}">{{ c.status }}</span>
+      </div>
+      <p class="muted" style="margin:4px 0;">Age {{ c.age }} &middot; Last seen: {{ c.last_seen }}</p>
+      <p style="margin:8px 0 0;">{{ c.description }}</p>
+    </div>
+  </div>
+</div>
+{% endfor %}
+
+<div class="card" style="text-align:center; background:#fff4e6; border-color:#f0d5a8;">
+  <p style="margin:0;">Have information about a real case? <a href="{{ url_for('tip') }}"><strong>Submit a tip</strong></a> or <a href="{{ url_for('report') }}"><strong>report someone missing</strong></a>.</p>
+</div>
+{% endblock %}

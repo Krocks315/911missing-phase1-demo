@@ -1,0 +1,218 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{% block title %}{{ org }} — Demo{% endblock %}</title>
+<meta name="robots" content="noindex, nofollow">
+<style>
+  :root {
+    --navy: #14213d;
+    --navy-light: #1f2f52;
+    --amber: #d98324;
+    --amber-light: #f2a541;
+    --cream: #faf7f2;
+    --ink: #1a1a1a;
+    --muted: #6b7280;
+    --urgent: #b3261e;
+    --active: #1e6f50;
+    --resolved: #4b5563;
+    --border: #e5e0d8;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    background: var(--cream);
+    color: var(--ink);
+    line-height: 1.55;
+  }
+  .demo-banner {
+    background: var(--amber);
+    color: #241300;
+    text-align: center;
+    font-size: 0.85rem;
+    font-weight: 600;
+    padding: 7px 12px;
+    letter-spacing: 0.02em;
+  }
+  header.site {
+    background: var(--navy);
+    color: #fff;
+    padding: 18px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+  header.site .brand {
+    font-size: 1.35rem;
+    font-weight: 700;
+    text-decoration: none;
+    color: #fff;
+    letter-spacing: -0.01em;
+  }
+  header.site .brand small {
+    display: block;
+    font-size: 0.7rem;
+    font-weight: 400;
+    color: #c7cfe0;
+    letter-spacing: 0.02em;
+  }
+  nav.site {
+    display: flex;
+    gap: 22px;
+    flex-wrap: wrap;
+  }
+  nav.site a {
+    color: #e7ebf5;
+    text-decoration: none;
+    font-size: 0.95rem;
+    font-weight: 500;
+  }
+  nav.site a:hover { color: var(--amber-light); }
+  main {
+    max-width: 920px;
+    margin: 0 auto;
+    padding: 48px 24px 80px;
+  }
+  footer {
+    background: var(--navy);
+    color: #b9c2d6;
+    padding: 28px 24px;
+    text-align: center;
+    font-size: 0.82rem;
+  }
+  footer a { color: var(--amber-light); }
+  h1 { font-size: 2rem; margin: 0 0 14px; color: var(--navy); }
+  h2 { font-size: 1.4rem; color: var(--navy); }
+  p.lead { font-size: 1.1rem; color: #333; }
+  .btn {
+    display: inline-block;
+    background: var(--amber);
+    color: #1a1200;
+    padding: 12px 22px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 600;
+    border: none;
+    font-size: 1rem;
+    cursor: pointer;
+  }
+  .btn:hover { background: var(--amber-light); }
+  .btn.secondary {
+    background: transparent;
+    border: 2px solid var(--navy);
+    color: var(--navy);
+  }
+  .btn.secondary:hover { background: var(--navy); color: #fff; }
+  .card {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 22px;
+    margin-bottom: 18px;
+    box-shadow: 0 1px 3px rgba(20,33,61,0.06);
+  }
+  .badge {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: 20px;
+    letter-spacing: 0.02em;
+  }
+  .badge.active { background: #e2f3ec; color: var(--active); }
+  .badge.urgent { background: #fbe4e2; color: var(--urgent); }
+  .badge.resolved { background: #eceef1; color: var(--resolved); }
+  form label {
+    display: block;
+    font-weight: 600;
+    margin: 16px 0 6px;
+    font-size: 0.92rem;
+    color: var(--navy);
+  }
+  form input[type=text], form input[type=number], form input[type=tel], form input[type=email], form textarea, form select {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    font-size: 1rem;
+    font-family: inherit;
+    background: #fff;
+  }
+  form textarea { min-height: 100px; resize: vertical; }
+  .checkbox-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 18px;
+    background: #fff4e6;
+    border: 1px solid #f0d5a8;
+    padding: 12px 14px;
+    border-radius: 8px;
+  }
+  .checkbox-row input { width: auto; }
+  .flash {
+    background: #fbe4e2;
+    color: var(--urgent);
+    padding: 12px 16px;
+    border-radius: 6px;
+    margin-bottom: 18px;
+    font-weight: 600;
+  }
+  .placeholder-photo {
+    width: 68px;
+    height: 68px;
+    border-radius: 10px;
+    background: var(--navy);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .case-row { display: flex; gap: 16px; align-items: flex-start; }
+  .muted { color: var(--muted); font-size: 0.9rem; }
+  .hero {
+    background: linear-gradient(135deg, var(--navy), var(--navy-light));
+    color: #fff;
+    padding: 56px 24px;
+    text-align: center;
+  }
+  .hero h1 { color: #fff; }
+  .hero p { color: #d7dcea; max-width: 620px; margin: 0 auto 26px; font-size: 1.08rem; }
+  .cta-row { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+  .stats { display: flex; gap: 24px; justify-content: center; margin-top: 36px; flex-wrap: wrap; }
+  .stat { text-align: center; }
+  .stat .num { font-size: 1.8rem; font-weight: 800; color: var(--amber-light); }
+  .stat .label { font-size: 0.8rem; color: #c7cfe0; }
+</style>
+</head>
+<body>
+  <div class="demo-banner">DEMO — Sample Content Only · Prototype for {{ org }} Phase 1 Proposal · No real case data</div>
+  <header class="site">
+    <a href="{{ url_for('home') }}" class="brand">{{ org }}<small>Mobilizing a network the moment someone goes missing</small></a>
+    <nav class="site">
+      <a href="{{ url_for('home') }}">Mission</a>
+      <a href="{{ url_for('cases') }}">Cases</a>
+      <a href="{{ url_for('report') }}">Report Someone Missing</a>
+      <a href="{{ url_for('tip') }}">Submit a Tip</a>
+      <a href="{{ url_for('donate') }}">Donate</a>
+    </nav>
+  </header>
+  <main>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        {% for category, message in messages %}
+          <div class="flash">{{ message }}</div>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+    {% block content %}{% endblock %}
+  </main>
+  <footer>
+    <p>{{ org }} — this is a <strong>demo/prototype site</strong> built to show Phase 1 of a proposed build. No real missing-persons data is stored here. The donate button below is a styled placeholder — real payment processing (Stripe) connects in production.</p>
+    <p>Prototype prepared by Ingrid Santana-Ramirez.</p>
+  </footer>
+</body>
+</html>

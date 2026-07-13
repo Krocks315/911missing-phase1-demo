@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block title %}Report Someone Missing — {{ org }}{% endblock %}
+{% block content %}
+<h1>Report Someone Missing</h1>
+<p class="lead muted">This demo form actually saves your submission (to an
+isolated demo database — no real case system is connected yet). Use test
+information only.</p>
+
+<div class="card">
+  <form method="post" enctype="multipart/form-data">
+    <label for="missing_person_name">Missing person's name *</label>
+    <input type="text" id="missing_person_name" name="missing_person_name" required placeholder="e.g. Test Person">
+
+    <label for="age">Age</label>
+    <input type="text" id="age" name="age" placeholder="e.g. 34">
+
+    <label for="description">Description</label>
+    <textarea id="description" name="description" placeholder="Height, build, clothing last seen wearing, any distinguishing details..."></textarea>
+
+    <label for="last_seen_location">Last seen location *</label>
+    <input type="text" id="last_seen_location" name="last_seen_location" required placeholder="City, cross streets, or landmark">
+
+    <label for="photo">Photo (optional, demo upload)</label>
+    <input type="file" id="photo" name="photo" accept="image/*">
+
+    <label for="reporter_name">Your name</label>
+    <input type="text" id="reporter_name" name="reporter_name" placeholder="Person submitting this report">
+
+    <label for="reporter_contact">Your phone or email</label>
+    <input type="text" id="reporter_contact" name="reporter_contact" placeholder="So our team can reach you">
+
+    <div class="checkbox-row">
+      <input type="checkbox" id="urgency_flag" name="urgency_flag" value="1">
+      <label for="urgency_flag" style="margin:0;">This is a child or an at-risk adult — flag as urgent</label>
+    </div>
+
+    <div style="margin-top:24px;">
+      <button type="submit" class="btn">Submit Report</button>
+    </div>
+  </form>
+</div>
+{% endblock %}

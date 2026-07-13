@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block title %}Submit a Tip — {{ org }}{% endblock %}
+{% block content %}
+<h1>Submit a Tip</h1>
+<p class="lead muted">This demo form actually saves your submission (to an
+isolated demo database). Use test information only.</p>
+
+<div class="card">
+  <form method="post">
+    <label for="related_case">Which case is this about? (name or description)</label>
+    <input type="text" id="related_case" name="related_case" placeholder="e.g. Sample Case — M. Rivera">
+
+    <label for="tip_text">Your tip *</label>
+    <textarea id="tip_text" name="tip_text" required placeholder="What did you see, when, and where?"></textarea>
+
+    <label for="contact_info">Your contact info (optional — you can stay anonymous)</label>
+    <input type="text" id="contact_info" name="contact_info" placeholder="Phone or email">
+
+    <div style="margin-top:24px;">
+      <button type="submit" class="btn">Submit Tip</button>
+    </div>
+  </form>
+</div>
+{% endblock %}

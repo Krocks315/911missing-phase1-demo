@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block title %}Donate — {{ org }}{% endblock %}
+{% block content %}
+<h1>Support the Search Network</h1>
+<p class="lead muted">Every dollar helps keep intake open, cases reviewed by
+real people, and the network ready to mobilize.</p>
+
+<div class="card" style="text-align:center;">
+  <h2>One-time or monthly gift</h2>
+  <p>This is a styled placeholder button for the demo. In production, this
+  connects to a real Stripe donation checkout — no more PayPal-only limitations.</p>
+  <button class="btn" type="button" disabled style="opacity:0.75; cursor:not-allowed;">Donate — Demo Placeholder</button>
+  <p class="muted" style="margin-top:14px;">Real payment processing (Stripe) activates at Phase 1 launch.</p>
+</div>
+{% endblock %}

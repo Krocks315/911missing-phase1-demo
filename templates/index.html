@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% block title %}{{ org }} — Mission{% endblock %}
+{% block content %}
+<div class="hero" style="margin: -48px -24px 40px; border-radius: 0 0 14px 14px;">
+  <h1>One network. The moment someone goes missing.</h1>
+  <p>{{ org }} exists to mobilize a real network of volunteers, families, and search
+  resources the instant a case opens — so no one is left posting flyers alone.
+  This page shows what a real, working Phase 1 presence looks like: live today,
+  not "coming soon."</p>
+  <div class="cta-row">
+    <a class="btn" href="{{ url_for('report') }}">Report Someone Missing</a>
+    <a class="btn secondary" href="{{ url_for('cases') }}" style="border-color:#fff;color:#fff;">View Sample Cases</a>
+  </div>
+  <div class="stats">
+    <div class="stat"><div class="num">24/7</div><div class="label">Intake Open</div></div>
+    <div class="stat"><div class="num">100%</div><div class="label">Human-Reviewed Reports</div></div>
+    <div class="stat"><div class="num">0</div><div class="label">False "Police Notified" Claims</div></div>
+  </div>
+</div>
+
+<h2>What we do</h2>
+<div class="card">
+  <p>When a family reports someone missing, the clock matters more than almost
+  anything else. {{ org }}'s job is to close the gap between "my loved one is
+  gone" and "people are actively looking" — with a structured intake, a clear
+  public status feed, and a way for tips and volunteers to reach the right
+  case fast.</p>
+</div>
+
+<div class="card">
+  <h2>What we will never promise</h2>
+  <p>We will not tell a family that law enforcement has been notified through
+  this app unless that is literally true. Police departments run their own
+  closed dispatch systems — no outside app has a legitimate door into that.
+  What we <em>can</em> do, and do honestly: generate a law-enforcement-ready
+  incident report, and help pre-fill a submission to NamUs, the Department of
+  Justice's national missing-persons database.</p>
+</div>
+
+<div class="card">
+  <h2>Every case, reviewed by a human</h2>
+  <p>Every report that comes through this intake gets a real person's eyes on
+  it before anything is escalated. That's not red tape — it's what keeps a
+  hoax report from triggering a real-world mobilization, and it's what makes
+  this organization trustworthy to the agencies, donors, and volunteers this
+  mission depends on.</p>
+</div>
+{% endblock %}
