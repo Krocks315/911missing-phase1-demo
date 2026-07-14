@@ -172,5 +172,26 @@ def donate():
     return render_template("donate.html", org=ORG_NAME)
 
 
+ALL_STATES = [
+    "Alabama", "Alaska", "Arizona", "Arkansas", "California", "Colorado",
+    "Connecticut", "Delaware", "Florida", "Georgia", "Hawaii", "Idaho",
+    "Illinois", "Indiana", "Iowa", "Kansas", "Kentucky", "Louisiana", "Maine",
+    "Maryland", "Massachusetts", "Michigan", "Minnesota", "Mississippi",
+    "Missouri", "Montana", "Nebraska", "Nevada", "New Hampshire",
+    "New Jersey", "New Mexico", "New York", "North Carolina",
+    "North Dakota", "Ohio", "Oklahoma", "Oregon", "Pennsylvania",
+    "Rhode Island", "South Carolina", "South Dakota", "Tennessee", "Texas",
+    "Utah", "Vermont", "Virginia", "Washington", "West Virginia",
+    "Wisconsin", "Wyoming",
+]
+POPULATED_STATES = {"Wyoming", "Oklahoma", "South Dakota", "Arizona", "Texas"}
+
+
+@app.route("/resources")
+def resources():
+    other_states = [s for s in ALL_STATES if s not in POPULATED_STATES]
+    return render_template("resources.html", org=ORG_NAME, other_states=other_states)
+
+
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 8080)), debug=False)

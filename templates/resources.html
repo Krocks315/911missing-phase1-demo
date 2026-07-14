@@ -1,0 +1,205 @@
+{% extends "base.html" %}
+{% block title %}Resources — {{ org }}{% endblock %}
+{% block content %}
+<h1>Resources</h1>
+<p class="lead muted">This page shows the kind of domain knowledge a real search-network
+app has to be built on — the alert types law enforcement actually uses, the hotlines a
+family needs in the first hour, and the start of a state-by-state directory. Phase 1 is a
+prototype; the structure below is exactly how this grows into a full 50-state resource
+system in Phase 2.</p>
+
+<h2 style="margin-top:36px;">Missing-Persons Alert Color Glossary</h2>
+<p class="muted">When law enforcement issues a missing-persons alert, the color name
+tells first responders, media, and the public exactly what kind of case they're looking
+at — and how fast it needs to move. Any app built for this space needs to speak this
+language fluently.</p>
+
+<div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:16px; margin-top:18px;">
+
+  <div class="card" style="border-left:6px solid #d98324;">
+    <div style="display:flex; align-items:center; gap:10px; margin-bottom:6px;">
+      <span class="badge" style="background:#fff4e6; color:#a15b0e;">AMBER</span>
+    </div>
+    <p style="margin:0;">An abducted or endangered child.</p>
+  </div>
+
+  <div class="card" style="border-left:6px solid #9ca3af;">
+    <div style="display:flex; align-items:center; gap:10px; margin-bottom:6px;">
+      <span class="badge" style="background:#eceef1; color:#4b5563;">SILVER</span>
+    </div>
+    <p style="margin:0;">A missing older adult, or someone with a dementia-related
+    impairment.</p>
+  </div>
+
+  <div class="card" style="border-left:6px solid #1f2f52;">
+    <div style="display:flex; align-items:center; gap:10px; margin-bottom:6px;">
+      <span class="badge" style="background:#e7ecf7; color:#14213d;">BLUE</span>
+    </div>
+    <p style="margin:0;">A suspect sought after serious harm to a law enforcement
+    officer.</p>
+  </div>
+
+  <div class="card" style="border-left:6px solid #7c3aed;">
+    <div style="display:flex; align-items:center; gap:10px; margin-bottom:6px;">
+      <span class="badge" style="background:#f1e8fd; color:#6d28d9;">PURPLE</span>
+    </div>
+    <p style="margin:0;">A missing adult with certain disabilities, believed to be in
+    immediate danger.</p>
+  </div>
+
+  <div class="card" style="border-left:6px solid #4b5563;">
+    <div style="display:flex; align-items:center; gap:10px; margin-bottom:6px;">
+      <span class="badge" style="background:#eceef1; color:#374151;">CAMO</span>
+    </div>
+    <p style="margin:0;">A missing current or former military member with mental
+    health concerns.</p>
+  </div>
+
+  <div class="card" style="border-left:6px solid #1e6f50;">
+    <div style="display:flex; align-items:center; gap:10px; margin-bottom:6px;">
+      <span class="badge" style="background:#e2f3ec; color:#1e6f50;">CLEAR</span>
+      <span class="muted" style="font-size:0.8rem;">/ Endangered Missing Persons</span>
+    </div>
+    <p style="margin:0;">A missing adult believed to be in danger, or a missing
+    person with intellectual or developmental disabilities.</p>
+    <p class="muted" style="margin:8px 0 0; font-size:0.82rem;">Criteria vary by
+    state — some states use CLEAR, others fold this into their own endangered-adult
+    alert. A production build needs a state-by-state lookup table, not one national
+    rule.</p>
+  </div>
+
+</div>
+
+<h2 style="margin-top:40px;">National Hotlines</h2>
+<p class="muted">Verified against each organization's own published contact
+information. Numbers a family or a volunteer needs to have memorized.</p>
+
+<div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:16px; margin-top:18px;">
+
+  <div class="card">
+    <p class="muted" style="margin:0 0 4px; font-size:0.82rem; text-transform:uppercase; letter-spacing:0.03em;">Emergency — Immediate Danger</p>
+    <h2 style="margin:0 0 6px; color:var(--urgent);">911</h2>
+    <p style="margin:0;">Call immediately. You do <strong>not</strong> need to wait
+    24 hours to report someone missing — that's a myth.</p>
+  </div>
+
+  <div class="card">
+    <p class="muted" style="margin:0 0 4px; font-size:0.82rem; text-transform:uppercase; letter-spacing:0.03em;">NCMEC — Missing &amp; Exploited Children</p>
+    <h2 style="margin:0 0 6px;">1-800-THE-LOST</h2>
+    <p class="muted" style="margin:0 0 6px;">(1-800-843-5678) — 24/7</p>
+    <p style="margin:0;">National Center for Missing &amp; Exploited Children.
+    Reports of a missing child, or child sexual exploitation.</p>
+  </div>
+
+  <div class="card">
+    <p class="muted" style="margin:0 0 4px; font-size:0.82rem; text-transform:uppercase; letter-spacing:0.03em;">National Human Trafficking Hotline</p>
+    <h2 style="margin:0 0 6px;">1-888-373-7888</h2>
+    <p class="muted" style="margin:0 0 6px;">Text 233733 — 24/7, 200+ languages</p>
+    <p style="margin:0;">Confidential, live-answered. For suspected trafficking
+    situations tied to a missing-persons case.</p>
+  </div>
+
+  <div class="card">
+    <p class="muted" style="margin:0 0 4px; font-size:0.82rem; text-transform:uppercase; letter-spacing:0.03em;">National Runaway Safeline</p>
+    <h2 style="margin:0 0 6px;">1-800-RUNAWAY</h2>
+    <p class="muted" style="margin:0 0 6px;">(1-800-786-2929)</p>
+    <p style="margin:0;">Support and resources for runaway and at-risk youth, and
+    the families looking for them.</p>
+  </div>
+
+  <div class="card">
+    <p class="muted" style="margin:0 0 4px; font-size:0.82rem; text-transform:uppercase; letter-spacing:0.03em;">NamUs — National Missing &amp; Unidentified Persons System</p>
+    <h2 style="margin:0 0 6px; font-size:1.3rem;">namus.gov</h2>
+    <p style="margin:0;">The Department of Justice's free national case database.
+    Families can submit case information and DNA samples directly. NamUs works
+    through its case-management system and web intake rather than a public
+    call-in line — the app can pre-fill a NamUs submission for a family (see the
+    Phase 2 proposal).</p>
+  </div>
+
+  <div class="card" style="border-left:6px solid #b3261e;">
+    <p class="muted" style="margin:0 0 4px; font-size:0.82rem; text-transform:uppercase; letter-spacing:0.03em;">StrongHearts Native Helpline</p>
+    <h2 style="margin:0 0 6px;">1-844-7NATIVE</h2>
+    <p class="muted" style="margin:0 0 6px;">(1-844-762-8483) — 24/7, confidential
+    &amp; anonymous</p>
+    <p style="margin:0;">Built specifically for Native American and Alaska Native
+    survivors of domestic and sexual violence — the population at the center of the
+    Missing and Murdered Indigenous Women (MMIW) crisis. This line matters here
+    specifically: it's severely under-resourced relative to the scale of the problem,
+    and a search-network app that ignores it is ignoring the communities hit hardest.</p>
+  </div>
+
+</div>
+
+<h2 style="margin-top:40px;">Statewide Resource Directory</h2>
+<p class="muted">This is the seed of a full 50-state directory — state clearinghouse
+agency, phone, and local resources for every state. Five states are fully populated
+below to show the real format. In production, every state gets this treatment.</p>
+
+<div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(300px, 1fr)); gap:16px; margin-top:18px;">
+
+  <div class="card">
+    <h2 style="margin:0 0 4px;">Wyoming</h2>
+    <p class="muted" style="margin:0 0 10px;">Wyoming Division of Criminal
+    Investigation — Missing Persons Clearinghouse</p>
+    <p style="margin:0 0 4px;">316 West 22nd Street, Cheyenne, WY 82002</p>
+    <p style="margin:0 0 10px;">Phone: (307) 777-7181 &middot; wysheriff.org</p>
+    <p class="muted" style="margin:0;">Also: NamUs, 911Missing.org, MissingKids.org,
+    The Charley Project, Dial 211 for local crisis services.</p>
+  </div>
+
+  <div class="card">
+    <h2 style="margin:0 0 4px;">Oklahoma</h2>
+    <p class="muted" style="margin:0 0 10px;">Oklahoma State Bureau of
+    Investigation — Victim Services / Missing Persons</p>
+    <p style="margin:0 0 4px;">6600 North Harvey Place, Oklahoma City, OK 73116</p>
+    <p style="margin:0 0 10px;">Phone: (405) 879-2641 &middot; osbi.ok.gov</p>
+    <p class="muted" style="margin:0;">Also: NamUs, 911Missing.org, MissingKids.org,
+    The Charley Project, Dial 211.</p>
+  </div>
+
+  <div class="card">
+    <h2 style="margin:0 0 4px;">South Dakota</h2>
+    <p class="muted" style="margin:0 0 10px;">South Dakota Division of Criminal
+    Investigation — Missing Persons Clearinghouse</p>
+    <p style="margin:0 0 4px;">1302 East Highway 14, Suite 5, Pierre, SD 57501</p>
+    <p style="margin:0 0 10px;">Phone: (605) 773-3331 &middot; dci.sd.gov</p>
+    <p class="muted" style="margin:0;">Also: NamUs, 911Missing.org, MissingKids.org,
+    The Charley Project, Dial 211.</p>
+  </div>
+
+  <div class="card">
+    <h2 style="margin:0 0 4px;">Arizona</h2>
+    <p class="muted" style="margin:0 0 10px;">Arizona Department of Public Safety
+    — Missing Children Clearinghouse</p>
+    <p style="margin:0 0 4px;">2222 W Encanto Blvd, Phoenix, AZ 85009</p>
+    <p style="margin:0 0 10px;">azdps.gov</p>
+    <p class="muted" style="margin:0;">Also: NamUs, 911Missing.org, MissingKids.org,
+    The Charley Project, Dial 211.</p>
+  </div>
+
+  <div class="card">
+    <h2 style="margin:0 0 4px;">Texas</h2>
+    <p class="muted" style="margin:0 0 10px;">Texas Department of Public Safety —
+    Missing Persons Clearinghouse</p>
+    <p style="margin:0 0 4px;">P.O. Box 4087, Austin, TX 78773-0422</p>
+    <p style="margin:0 0 10px;">Phone: (512) 424-5074 &middot; dps.texas.gov</p>
+    <p class="muted" style="margin:0;">Also: NamUs, 911Missing.org, MissingKids.org,
+    The Charley Project, Dial 211.</p>
+  </div>
+
+</div>
+
+<p class="muted" style="margin:22px 0 8px; font-weight:600;">All other states &amp; territories</p>
+<div class="card" style="background:#fff4e6; border-color:#f0d5a8;">
+  <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(140px, 1fr)); gap:6px 18px; font-size:0.92rem;">
+    {% for state in other_states %}
+    <div class="muted">{{ state }} <span style="font-size:0.82rem;">(Full state-specific resources available once the organization decides to move forward with this build)</span></div>
+    {% endfor %}
+  </div>
+</div>
+
+<div class="card" style="text-align:center; background:#fff4e6; border-color:#f0d5a8; margin-top:26px;">
+  <p style="margin:0;">Have information about a real case right now? <a href="{{ url_for('tip') }}"><strong>Submit a tip</strong></a> or <a href="{{ url_for('report') }}"><strong>report someone missing</strong></a>. In immediate danger, call <strong>911</strong>.</p>
+</div>
+{% endblock %}
