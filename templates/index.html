@@ -14,7 +14,20 @@
   <div class="stats">
     <div class="stat"><div class="num">24/7</div><div class="label">Intake Open</div></div>
     <div class="stat"><div class="num">100%</div><div class="label">Human-Reviewed Reports</div></div>
-    <div class="stat"><div class="num">0</div><div class="label">False "Police Notified" Claims</div></div>
+  </div>
+</div>
+
+<div class="card">
+  <h2>Not sure which form you need?</h2>
+  <p><strong>Report Someone Missing</strong> — start a new case. Use this if a person is missing
+  right now and there's no case for them yet.</p>
+  <p><strong>Submit a Tip</strong> — you have information about a case that already exists.</p>
+  <p><strong>Report a Sighting</strong> — you just saw someone who matches a case, right now or
+  recently.</p>
+  <div class="cta-row" style="justify-content:flex-start; margin-top:10px;">
+    <a class="btn" href="{{ url_for('report') }}">Report Someone Missing</a>
+    <a class="btn secondary" href="{{ url_for('tip') }}">Submit a Tip</a>
+    <a class="btn secondary" href="{{ url_for('sighting') }}">Report a Sighting</a>
   </div>
 </div>
 
