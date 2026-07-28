@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+{% block title %}Report a Sighting — {{ org }}{% endblock %}
+{% block content %}
+<h1>Report a Sighting</h1>
+<p class="lead muted">If you recognize someone from our cases, tell us what you saw. This demo form
+actually saves your submission (to an isolated demo database) for our team to review. Use test
+information only.</p>
+
+<div class="card">
+  <form method="post" enctype="multipart/form-data" id="sighting-form">
+
+    <label for="related_case">Which case does this match? (optional)</label>
+    <input type="text" id="related_case" name="related_case" placeholder="e.g. Sample Case — M. Rivera">
+
+    <label for="photo">Photo (optional — take one now or upload)</label>
+    <input type="file" id="photo" name="photo" accept="image/*" capture="environment">
+
+    <label for="description">What did you see? *</label>
+    <textarea id="description" name="description" required placeholder="Where you saw them, what they were doing, what they were wearing, anything else that stood out."></textarea>
+
+    <label for="location_text">Location (address, cross streets, or landmark)</label>
+    <input type="text" id="location_text" name="location_text" placeholder="e.g. Corner of 5th & Main, outside the QuikTrip">
+    <p class="muted" id="location-status" style="margin-top:6px;">Checking for your device's location…</p>
+
+    <label for="reporter_contact">Your contact info (optional — you can stay anonymous)</label>
+    <input type="text" id="reporter_contact" name="reporter_contact" placeholder="Phone or email">
+
+    <!-- Auto-captured, no user action needed -->
+    <input type="hidden" id="device_timestamp" name="device_timestamp">
+    <input type="hidden" id="latitude" name="latitude">
+    <input type="hidden" id="longitude" name="longitude">
+    <input type="hidden" id="location_source" name="location_source" value="none">
+
+    <div style="margin-top:24px;">
+      <button type="submit" class="btn">Submit Sighting Report</button>
+    </div>
+  </form>
+</div>
+
+<script>
+  // 1. Auto-capture device timestamp — no user action needed.
+  document.getElementById('device_timestamp').value = new Date().toISOString();
+
+  // 2. Try browser Geolocation as the primary path. If denied, unavailable,
+  //    or on desktop, the manual location_text field above is the fallback —
+  //    it's always visible and always sendable.
+  var statusEl = document.getElementById('location-status');
+  if ('geolocation' in navigator) {
+    navigator.geolocation.getCurrentPosition(
+      function (pos) {
+        document.getElementById('latitude').value = pos.coords.latitude;
+        document.getElementById('longitude').value = pos.coords.longitude;
+        document.getElementById('location_source').value = 'geolocation';
+        statusEl.textContent = 'Location detected from your device. You can still add details above.';
+      },
+      function () {
+        document.getElementById('location_source').value = 'denied';
+        statusEl.textContent = 'Location not available — please describe where you saw them above.';
+      },
+      { timeout: 8000 }
+    );
+  } else {
+    document.getElementById('location_source').value = 'unsupported';
+    statusEl.textContent = 'This device/browser doesn\'t support location — please describe where you saw them above.';
+  }
+</script>
+{% endblock %}

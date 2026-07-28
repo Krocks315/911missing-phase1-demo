@@ -167,6 +167,73 @@ def tip():
     return render_template("tip.html", org=ORG_NAME)
 
 
+@app.route("/sighting", methods=["GET", "POST"])
+def sighting():
+    if request.method == "POST":
+        try:
+            photo_path = None
+            photo = request.files.get("photo")
+            if photo and photo.filename:
+                ext = os.path.splitext(photo.filename)[1] or ".jpg"
+                object_name = f"sighting-{uuid.uuid4()}{ext}"
+                content_type = photo.mimetype or mimetypes.guess_type(photo.filename)[0] or "application/octet-stream"
+                upload_url = f"{SUPABASE_URL}/storage/v1/object/{BUCKET}/{object_name}"
+                up_resp = requests.post(
+                    upload_url,
+                    headers={
+                        "apikey": SUPABASE_ANON_KEY,
+                        "Authorization": f"Bearer {SUPABASE_ANON_KEY}",
+                        "Content-Type": content_type,
+                    },
+                    data=photo.read(),
+                    timeout=20,
+                )
+                if up_resp.status_code in (200, 201):
+                    photo_path = object_name
+
+            lat = request.form.get("latitude", "").strip()
+            lon = request.form.get("longitude", "").strip()
+            location_source = request.form.get("location_source", "none").strip() or "none"
+
+            sighting_id = str(uuid.uuid4())
+            payload = {
+                "id": sighting_id,
+                "device_timestamp": request.form.get("device_timestamp", "").strip() or None,
+                "description": request.form.get("description", "").strip(),
+                "location_text": request.form.get("location_text", "").strip() or None,
+                "latitude": float(lat) if lat else None,
+                "longitude": float(lon) if lon else None,
+                "location_source": location_source,
+                "related_case": request.form.get("related_case", "").strip() or None,
+                "reporter_contact": request.form.get("reporter_contact", "").strip() or None,
+                "photo_path": photo_path,
+                "status": "new_demo_submission",
+            }
+
+            resp = requests.post(
+                f"{SUPABASE_URL}/rest/v1/demo_911missing_sightings",
+                headers=supabase_headers(),
+                json=payload,
+                timeout=15,
+            )
+            if resp.status_code not in (200, 201, 204):
+                flash(f"Something went wrong saving this sighting report (status {resp.status_code}). Please try again.", "error")
+                return redirect(url_for("sighting"))
+
+            return render_template(
+                "sighting_success.html",
+                org=ORG_NAME,
+                sighting_id=sighting_id,
+                had_photo=bool(photo_path),
+                location_source=location_source,
+            )
+        except Exception as exc:  # noqa: BLE001
+            flash(f"Submission failed: {exc}", "error")
+            return redirect(url_for("sighting"))
+
+    return render_template("sighting.html", org=ORG_NAME)
+
+
 @app.route("/donate")
 def donate():
     return render_template("donate.html", org=ORG_NAME)

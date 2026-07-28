@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block title %}Sighting Reported — {{ org }}{% endblock %}
+{% block content %}
+<div class="card" style="text-align:center;">
+  <span class="badge active">Received</span>
+  <h1 style="margin-top:16px;">Thank you — your sighting report was saved.</h1>
+  <p class="lead">This demo submission was stored successfully in the demo sightings queue for
+  our team to review.</p>
+  <p class="muted">Demo record ID: <code>{{ sighting_id }}</code></p>
+  <p class="muted">
+    {% if had_photo %}Photo attached.{% else %}No photo attached.{% endif %}
+    Location:
+    {% if location_source == 'geolocation' %}captured from your device.
+    {% elif location_source == 'denied' %}not shared — using the description you typed in.
+    {% else %}using the description you typed in.{% endif %}
+  </p>
+  <p class="muted">In production, a human moderator reviews every sighting report before it's
+  matched to a case (Phase 2) — nothing here is auto-published or auto-linked yet.</p>
+  <a class="btn secondary" href="{{ url_for('home') }}">Back to Home</a>
+</div>
+{% endblock %}
