@@ -13,15 +13,20 @@ content, clearly labeled.
 - Sample case listing (3 clearly-fake placeholder cases)
 - "Report Someone Missing" intake form — functional, stores to Supabase
 - Tip/contact submission form — functional, stores to Supabase
+- "Report a Sighting" form — functional, stores to Supabase; captures an
+  optional photo, an auto-captured device timestamp, geolocation (with a
+  manual text-entry fallback when location access is denied or on desktop),
+  and a description. Lands in an admin-reviewable queue only — not yet
+  auto-linked to a specific case (Phase 2).
 - Donate page (styled placeholder — no real payment processing in the demo)
 
 ## Stack
 
 - Flask (Python), server-rendered templates
 - Supabase (Postgres + Storage) for form storage — isolated demo-only tables
-  (`demo_911missing_reports`, `demo_911missing_tips`) and an isolated storage
-  bucket (`demo-911missing-photos`). Insert-only anon access; no public read
-  access to submitted data.
+  (`demo_911missing_reports`, `demo_911missing_tips`, `demo_911missing_sightings`)
+  and an isolated storage bucket (`demo-911missing-photos`). Insert-only anon
+  access; no public read access to submitted data.
 - Deployed on Vercel, connected to this GitHub repo for auto-deploy. Vercel
   auto-detects the Flask `app` instance in `app.py` — no custom `vercel.json`
   build config needed (per Vercel's current Flask deployment docs).
