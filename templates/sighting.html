@@ -18,6 +18,11 @@ information only.</p>
     <label for="description">What did you see? *</label>
     <textarea id="description" name="description" required placeholder="Where you saw them, what they were doing, what they were wearing, anything else that stood out."></textarea>
 
+    <label for="sighting_occurred_at">When did you see them? (optional — leave as-is if this just happened)</label>
+    <input type="datetime-local" id="sighting_occurred_at" name="sighting_occurred_at">
+    <p class="muted" style="margin-top:6px;">Defaults to right now. Change it if you're reporting something you saw
+    earlier — yesterday, last week, whenever it was.</p>
+
     <label for="location_text">Location (address, cross streets, or landmark)</label>
     <input type="text" id="location_text" name="location_text" placeholder="e.g. Corner of 5th & Main, outside the QuikTrip">
     <p class="muted" id="location-status" style="margin-top:6px;">Checking for your device's location…</p>
@@ -40,6 +45,16 @@ information only.</p>
 <script>
   // 1. Auto-capture device timestamp — no user action needed.
   document.getElementById('device_timestamp').value = new Date().toISOString();
+
+  // 1b. Default "When did you see them?" to right now, in the witness's local
+  //     time, so real-time reporters can just leave it — but it stays a plain
+  //     editable field for anyone reporting a past sighting.
+  (function () {
+    var now = new Date();
+    var tzOffsetMs = now.getTimezoneOffset() * 60000;
+    var localIso = new Date(now.getTime() - tzOffsetMs).toISOString().slice(0, 16);
+    document.getElementById('sighting_occurred_at').value = localIso;
+  })();
 
   // 2. Try browser Geolocation as the primary path. If denied, unavailable,
   //    or on desktop, the manual location_text field above is the fallback —

@@ -7,6 +7,8 @@
   <p class="lead">This demo submission was stored successfully in the demo sightings queue for
   our team to review.</p>
   <p class="muted">Demo record ID: <code>{{ sighting_id }}</code></p>
+  <p class="muted">Sighting occurred: <strong>{{ sighting_occurred_at }}</strong> (as reported by the witness —
+  separate from the time this report was submitted).</p>
   <p class="muted">
     {% if had_photo %}Photo attached.{% else %}No photo attached.{% endif %}
     Location:

@@ -195,10 +195,25 @@ def sighting():
             lon = request.form.get("longitude", "").strip()
             location_source = request.form.get("location_source", "none").strip() or "none"
 
+            # "When did you see them?" — witness-entered, distinct from the
+            # auto-captured submission time (device_timestamp / created_at).
+            # Optional: if a witness reporting in real time leaves it blank,
+            # default to "just now" so no one is forced to fill it in.
+            sighting_occurred_raw = request.form.get("sighting_occurred_at", "").strip()
+            if sighting_occurred_raw:
+                try:
+                    # datetime-local input format: "YYYY-MM-DDTHH:MM"
+                    sighting_occurred_at = datetime.fromisoformat(sighting_occurred_raw).isoformat()
+                except ValueError:
+                    sighting_occurred_at = datetime.utcnow().isoformat()
+            else:
+                sighting_occurred_at = datetime.utcnow().isoformat()
+
             sighting_id = str(uuid.uuid4())
             payload = {
                 "id": sighting_id,
                 "device_timestamp": request.form.get("device_timestamp", "").strip() or None,
+                "sighting_occurred_at": sighting_occurred_at,
                 "description": request.form.get("description", "").strip(),
                 "location_text": request.form.get("location_text", "").strip() or None,
                 "latitude": float(lat) if lat else None,
@@ -226,6 +241,7 @@ def sighting():
                 sighting_id=sighting_id,
                 had_photo=bool(photo_path),
                 location_source=location_source,
+                sighting_occurred_at=sighting_occurred_at,
             )
         except Exception as exc:  # noqa: BLE001
             flash(f"Submission failed: {exc}", "error")
