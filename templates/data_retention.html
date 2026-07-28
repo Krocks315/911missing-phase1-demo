@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block title %}Data Retention — {{ org }}{% endblock %}
+{% block content %}
+<h1>Data Retention</h1>
+<div class="card" style="background:#fff4e6; border-color:#f0d5a8;">
+  <p style="margin:0;"><strong>DRAFT / PLACEHOLDER.</strong> Our data retention policy is still
+  being finalized. The information below reflects current thinking, not a locked policy.</p>
+</div>
+
+<div class="card">
+  <p>Reports, tips, and sightings are currently kept for as long as a case remains active, and
+  for a period after resolution to support any follow-up review. In this demo environment, all
+  submitted data lives in an isolated demo database — separate from any future production
+  system — and may be cleared periodically as we test and rebuild features.</p>
+
+  <p style="margin-bottom:0;">A finalized retention schedule (how long data is kept, when and
+  how it's deleted, and how that differs for resolved vs. active cases) will be published here
+  once adopted.</p>
+</div>
+
+<div class="card" style="margin-top:0;">
+  <p style="margin:0;">Questions: privacy@findthemissing-demo.org <span class="muted">(placeholder)</span></p>
+</div>
+{% endblock %}

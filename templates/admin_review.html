@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block title %}Demo Admin Review — {{ case.name }} — {{ org }}{% endblock %}
+{% block content %}
+
+<div class="card" style="background:#e7ecf7; border-color:#c7cfe0; text-align:center; margin-bottom:22px;">
+  <p style="margin:0; font-weight:800; letter-spacing:0.02em; color:#14213d;">
+    DEMO ADMIN VIEW — MOCKUP ONLY, NO REAL AUTHENTICATION
+  </p>
+  <p class="muted" style="margin:6px 0 0;">This screen shows what a staff reviewer would see when a
+  tip or sighting comes in on a case — submitter info, timestamp, location, and notes — so the
+  board can evaluate the review workflow. It is not connected to a real login system, and no real
+  staff account is required to view it in this demo.</p>
+</div>
+
+<div class="card">
+  <h1 style="margin:0 0 4px;">Case: {{ case.name }}</h1>
+  <p class="muted" style="margin:0;">Age {{ case.age }} &middot; Status: {{ case.status }} &middot;
+  <span class="badge {{ case.status_color }}">{{ case.status }}</span></p>
+</div>
+
+<h2 style="margin-top:32px;">Incoming Submissions ({{ submissions|length }})</h2>
+<p class="muted">Fabricated demo data — illustrates the review queue a staff reviewer would triage.
+None of this describes a real submission.</p>
+
+{% for s in submissions %}
+<div class="card">
+  <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:8px;">
+    <h2 style="margin:0;">{{ s.kind }}</h2>
+    <span class="badge urgent">{{ s.review_status }}</span>
+  </div>
+  <p class="muted" style="margin:4px 0 10px;">Submitted: {{ s.submitted }}</p>
+  <p style="margin:0 0 6px;"><strong>Submitter:</strong> {{ s.submitter }}</p>
+  <p style="margin:0 0 6px;"><strong>Location:</strong> {{ s.location }}</p>
+  <p style="margin:0 0 6px;"><strong>Photo:</strong> {{ s.photo }}</p>
+  <p style="margin:12px 0 0;"><strong>Notes:</strong> {{ s.notes }}</p>
+  <div class="cta-row" style="justify-content:flex-start; margin-top:16px;">
+    <button class="btn" type="button" disabled style="opacity:0.6; cursor:not-allowed;">Verify &amp; Escalate (Demo — not wired up)</button>
+    <button class="btn secondary" type="button" disabled style="opacity:0.6; cursor:not-allowed;">Mark Reviewed (Demo — not wired up)</button>
+  </div>
+</div>
+{% endfor %}
+
+<div class="card" style="text-align:center;">
+  <a href="{{ url_for('case_detail', slug=case.slug) }}">&larr; Back to {{ case.name }}'s Case Page</a>
+</div>
+{% endblock %}

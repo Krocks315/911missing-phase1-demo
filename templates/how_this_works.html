@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+{% block title %}How This Demo Works — {{ org }}{% endblock %}
+{% block content %}
+<h1>How This Demo Works</h1>
+<p class="lead muted">About a 2-minute read. Plain and honest, on purpose.</p>
+
+<div class="card">
+  <p>This site is a working prototype for {{ org }}'s Phase 1 build. It's not a finished
+  product, and it's not live in production — but it's also not a mockup with fake buttons.
+  Here's exactly what's real right now, and what still needs to be built.</p>
+</div>
+
+<h2 style="margin-top:32px;">What's Real</h2>
+<div class="card">
+  <ul>
+    <li><strong>The forms actually work.</strong> Report Someone Missing, Submit a Tip, and
+    Report a Sighting all submit live data — right now, into an isolated demo database, not a
+    public one.</li>
+    <li><strong>The database actually writes the records.</strong> When you submit a form, a
+    real row gets created. Nothing here is a static screenshot pretending to be a working app.</li>
+    <li><strong>The intake structure is real.</strong> The fields we ask for, the flow from
+    report to case to tip to sighting — that's the actual structure we'd build on for a
+    production system, not a rough sketch of one.</li>
+    <li><strong>An eventual email notification flow is planned and designed for</strong>, so
+    that a tip or sighting can reach the right person without anyone needing to sit and refresh
+    a dashboard. That piece isn't wired up yet in this demo.</li>
+  </ul>
+</div>
+
+<h2 style="margin-top:32px;">What's Not Built Yet</h2>
+<div class="card">
+  <ul>
+    <li><strong>The case data is fictional.</strong> Every case on this site — names, ages,
+    descriptions, circumstances — is invented for demonstration purposes. None of it describes
+    a real person or a real case. Each sample case is clearly labeled as a sample.</li>
+    <li><strong>There's no law enforcement integration.</strong> Nothing submitted through this
+    demo reaches any police department, sheriff's office, or law enforcement database. That
+    connection doesn't exist yet, and we won't claim otherwise anywhere on this site.</li>
+    <li><strong>There's no live map yet.</strong> Location data is collected on the sighting
+    form, but there's no public or internal map view built on top of it yet.</li>
+    <li><strong>There's no real staff review dashboard yet.</strong> Submissions land in the
+    database, but the tools a real coordinator would use to triage, verify, and act on them
+    haven't been built. Right now, reviewing a submission means someone opening the database
+    directly — see the <a href="{{ url_for('case_admin_review', slug='dana-colton') }}">demo
+    admin review mockup</a> for what that will eventually look like.</li>
+  </ul>
+</div>
+
+<div class="card" style="background:#fff4e6; border-color:#f0d5a8;">
+  <h2 style="margin-top:0;">Why Show It This Way</h2>
+  <p style="margin:0;">We'd rather show the board something honest and early than something
+  polished and fake. Everything marked "real" above is real. Everything marked "not built yet"
+  is on the roadmap, not already done. That's the whole point of a Phase 1 demo — proving the
+  foundation works before we build the rest on top of it.</p>
+</div>
+{% endblock %}

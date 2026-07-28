@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% block title %}{{ case.name }} — Sample Case — {{ org }}{% endblock %}
+{% block content %}
+
+<div class="card" style="background:#fff4e6; border-color:#f0d5a8; text-align:center; margin-bottom:22px;">
+  <p style="margin:0; font-weight:800; letter-spacing:0.02em; color:#a15b0e;">
+    SAMPLE CASE — FOR DEMONSTRATION PURPOSES ONLY / NOT A REAL PERSON
+  </p>
+</div>
+
+<div class="card">
+  <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:10px;">
+    <h1 style="margin:0;">{{ case.name }}</h1>
+    <span class="badge {{ case.status_color }}">{{ case.status }}</span>
+  </div>
+  <p class="muted" style="margin:6px 0 0;">Age {{ case.age }} &middot; Last seen: {{ case.last_seen_date }}</p>
+
+  <h2 style="margin-top:26px;">Last Seen</h2>
+  <p>{{ case.last_seen_location }}</p>
+
+  <h2 style="margin-top:22px;">Description</h2>
+  <p>{{ case.physical_description }}</p>
+
+  <h2 style="margin-top:22px;">Circumstances</h2>
+  <p>{{ case.circumstances }}</p>
+
+  <h2 style="margin-top:22px;">Why This Case Is Public</h2>
+  <p>{{ case.why_public }}</p>
+</div>
+
+<div class="card" style="background:#fff4e6; border-color:#f0d5a8;">
+  <p style="margin:0;"><strong>{{ case.fictional_note }}</strong></p>
+</div>
+
+<div class="card" style="text-align:center;">
+  <p style="margin:0 0 14px;">This sample case is wired into the full demo flow — try submitting
+  a sighting or a tip against it, or see what a staff reviewer would see once a report comes in.</p>
+  <div class="cta-row" style="justify-content:center;">
+    <a class="btn" href="{{ url_for('sighting') }}">Report a Sighting on This Case</a>
+    <a class="btn secondary" href="{{ url_for('tip') }}">Submit a Tip on This Case</a>
+    <a class="btn secondary" href="{{ url_for('case_admin_review', slug=case.slug) }}">See Demo Admin Review View</a>
+  </div>
+</div>
+
+<div class="card" style="text-align:center;">
+  <a href="{{ url_for('cases') }}">&larr; Back to Sample Case Listing</a>
+</div>
+{% endblock %}

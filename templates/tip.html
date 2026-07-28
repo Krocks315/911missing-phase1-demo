@@ -8,9 +8,11 @@ isolated demo database). Use test information only.</p>
 <div class="card">
   <form method="post">
     <label for="related_case">Which case is this about? (name or description)</label>
-    <input type="text" id="related_case" name="related_case" placeholder="e.g. Sample Case — M. Rivera">
+    <input type="text" id="related_case" name="related_case" placeholder="e.g. Dana Marie Colton">
+    <p class="muted" style="margin-top:6px;">Not sure which case? See our full sample case —
+    <a href="{{ url_for('case_detail', slug='dana-colton') }}">Dana Marie Colton</a>.</p>
 
-    <label for="tip_text">Your tip *</label>
+    <label for="tip_text">Your tip <span class="req">*</span></label>
     <textarea id="tip_text" name="tip_text" required placeholder="What did you see, when, and where?"></textarea>
 
     <label for="contact_info">Your contact info (optional — you can stay anonymous)</label>

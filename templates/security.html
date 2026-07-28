@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block title %}Security &amp; Data Protection — {{ org }}{% endblock %}
+{% block content %}
+<h1>Security &amp; Data Protection</h1>
+<p class="lead muted">A short, honest summary of where our security posture stands today — written
+for the Board, not for a compliance filing.</p>
+
+<div class="card">
+  <p>{{ org }} is currently a working demo — not yet the production system that will hold real
+  case files.</p>
+
+  <p>Before any real case data is entered, we've designed and pressure-tested a protection model
+  built for how sensitive this work is:</p>
+
+  <ul>
+    <li>Four staff access levels, including a time-limited, individually named
+    <strong>"Restricted-Case Reviewer"</strong> tier for domestic-violence-survivor and
+    at-risk-minor cases.</li>
+    <li>Two-factor authentication enforced at the database level, not just the login screen.</li>
+    <li>Built-in safeguards so no staff member can grant themselves access to restricted files.</li>
+    <li>A separate, encrypted storage model for the most sensitive case records.</li>
+  </ul>
+
+  <p>Reporter protections — CAPTCHA, anonymous reporting, and fast-tracked routing for high-risk
+  tips — are part of the same design.</p>
+
+  <p>This model has already been through one round of adversarial internal security review, which
+  is exactly how it's supposed to work: found and fixed before anything gets built, not
+  discovered after.</p>
+</div>
+
+<div class="card" style="background:#fff4e6; border-color:#f0d5a8;">
+  <h2 style="margin-top:0;">Where Things Stand Today</h2>
+  <p>Today's demo still has a few known configuration items open, including a photo-storage
+  setting that's more permissive than it should be. We're closing those before this becomes the
+  production system — this demo does not yet hold real case data, so the immediate risk is low,
+  but we're not treating that as a reason to leave it unfixed.</p>
+</div>
+
+<div class="card" style="text-align:center;">
+  <p style="margin:0; font-weight:600;">Security here is being designed in from day one —
+  reviewed and fixed before launch, not patched on after.</p>
+</div>
+{% endblock %}

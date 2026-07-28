@@ -2,20 +2,24 @@
 {% block title %}Report a Sighting — {{ org }}{% endblock %}
 {% block content %}
 <h1>Report a Sighting</h1>
-<p class="lead muted">If you recognize someone from our cases, tell us what you saw. This demo form
-actually saves your submission (to an isolated demo database) for our team to review. Use test
-information only.</p>
+<p class="lead muted">If you believe you've seen someone from one of our active cases, say
+something — your tip could help bring them home. There's no wrong way to report it, and no
+detail is too small to matter. A real person reads every submission before anything happens
+next. This demo form actually saves your submission (to an isolated demo database) for our
+team to review. Use test information only.</p>
 
 <div class="card">
   <form method="post" enctype="multipart/form-data" id="sighting-form">
 
     <label for="related_case">Which case does this match? (optional)</label>
-    <input type="text" id="related_case" name="related_case" placeholder="e.g. Sample Case — M. Rivera">
+    <input type="text" id="related_case" name="related_case" placeholder="e.g. Dana Marie Colton">
+    <p class="muted" style="margin-top:6px;">Not sure which case? See our full sample case —
+    <a href="{{ url_for('case_detail', slug='dana-colton') }}">Dana Marie Colton</a>.</p>
 
     <label for="photo">Photo (optional — take one now or upload)</label>
     <input type="file" id="photo" name="photo" accept="image/*" capture="environment">
 
-    <label for="description">What did you see? *</label>
+    <label for="description">What did you see? <span class="req">*</span></label>
     <textarea id="description" name="description" required placeholder="Where you saw them, what they were doing, what they were wearing, anything else that stood out."></textarea>
 
     <label for="sighting_occurred_at">When did you see them? (optional — leave as-is if this just happened)</label>

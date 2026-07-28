@@ -186,6 +186,45 @@
   .stat { text-align: center; }
   .stat .num { font-size: 1.8rem; font-weight: 800; color: var(--amber-light); }
   .stat .label { font-size: 0.8rem; color: #c7cfe0; }
+  nav.site a.coming-soon {
+    color: #8b93a8;
+    cursor: default;
+    pointer-events: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+  nav.site a.coming-soon .tag {
+    font-size: 0.65rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    background: rgba(255,255,255,0.12);
+    color: #c7cfe0;
+    padding: 2px 7px;
+    border-radius: 10px;
+  }
+  .req {
+    color: var(--urgent);
+    font-weight: 800;
+    margin-left: 2px;
+  }
+  footer .footer-org {
+    max-width: 720px;
+    margin: 0 auto 18px;
+  }
+  footer .footer-links {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 4px 16px;
+    max-width: 780px;
+    margin: 0 auto 18px;
+    padding-top: 16px;
+    border-top: 1px solid rgba(185,194,214,0.25);
+  }
+  footer .footer-links a { font-weight: 600; }
+  footer .footer-credit { color: #8b93a8; font-size: 0.78rem; }
 </style>
 </head>
 <body>
@@ -199,6 +238,8 @@
       <a href="{{ url_for('tip') }}">Submit a Tip</a>
       <a href="{{ url_for('sighting') }}">Report a Sighting</a>
       <a href="{{ url_for('resources') }}">Resources</a>
+      <a href="{{ url_for('about') }}">About</a>
+      <a class="coming-soon" href="#" onclick="return false;" aria-disabled="true" title="Not built yet — check back soon.">Shop <span class="tag">Coming Soon</span></a>
       <a href="{{ url_for('donate') }}">Donate</a>
     </nav>
   </header>
@@ -213,9 +254,24 @@
     {% block content %}{% endblock %}
   </main>
   <footer>
-    <p>{{ org }} — this is a <strong>demo/prototype site</strong> built to show Phase 1 of a proposed build. No real missing-persons data is stored here. The donate button below is a styled placeholder — real payment processing (Stripe) connects in production.</p>
-    <button class="btn secondary" type="button" disabled style="opacity:0.75; cursor:not-allowed; border-color:#b9c2d6; color:#b9c2d6; margin:6px 0 14px;">Donate (Demo — not yet connected to a real payment processor)</button>
-    <p>Prototype prepared by Ingrid Santana-Ramirez.</p>
+    <div class="footer-org">
+      <p><strong>{{ org }}</strong> <span class="muted" style="color:#8b93a8;">(Demo Organization Name — pending final org name/branding approval)</span><br>
+      EIN: XX-XXXXXXX <span class="muted" style="color:#8b93a8;">(placeholder — nonprofit status pending, see Nonprofit Status)</span></p>
+      <p>This is a <strong>working demo/prototype</strong>, not a live production system. No real missing-persons cases are processed here. The donate button below is a styled placeholder — real payment processing (Stripe) connects in production.</p>
+      <p>Contact: contact@findthemissing-demo.org <span class="muted" style="color:#8b93a8;">(placeholder — not yet live)</span></p>
+      <button class="btn secondary" type="button" disabled style="opacity:0.75; cursor:not-allowed; border-color:#b9c2d6; color:#b9c2d6; margin:6px 0 4px;">Donate (Demo — not yet connected to a real payment processor)</button>
+    </div>
+    <div class="footer-links">
+      <a href="{{ url_for('how_this_works') }}">How This Demo Works</a>
+      <a href="{{ url_for('partners') }}">For Funders &amp; Partners</a>
+      <a href="{{ url_for('security') }}">Security &amp; Data Protection</a>
+      <a href="{{ url_for('privacy') }}">Privacy Policy</a>
+      <a href="{{ url_for('terms') }}">Terms of Service</a>
+      <a href="{{ url_for('nonprofit_status') }}">Nonprofit Status</a>
+      <a href="{{ url_for('data_retention') }}">Data Retention</a>
+      <a href="{{ url_for('law_enforcement_partnership') }}">Law Enforcement Partnership</a>
+    </div>
+    <p class="footer-credit">Prototype prepared by Ingrid Santana-Ramirez.</p>
   </footer>
 </body>
 </html>

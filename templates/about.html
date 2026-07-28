@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+{% block title %}About Us — {{ org }}{% endblock %}
+{% block content %}
+<h1>About Us</h1>
+
+<div class="card">
+  <p>{{ org }} started from a simple observation: when someone goes missing, families are
+  almost always left to organize the search themselves — printing flyers, posting on social
+  media, calling everyone they know — while the clock keeps running. We're building a volunteer
+  network designed to close that gap: a place where reports, tips, and sightings can move fast,
+  get reviewed by a real person, and eventually connect directly to the people equipped to act
+  on them.</p>
+  <p style="margin-bottom:0;">We're early. What you see on this site today is a Phase 1 demo,
+  built to prove the foundation works before we build the rest on top of it — and we'd rather
+  show that honestly than dress it up as more than it is.</p>
+</div>
+
+<h2 style="margin-top:32px;">Our Team</h2>
+<p class="muted">Placeholder bios — names and photos are generic placeholders pending final team
+confirmation. Photos below are placeholder graphics, not real photos, until the team is
+finalized.</p>
+
+<div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(240px, 1fr)); gap:16px; margin-top:14px;">
+
+  <div class="card">
+    <div class="placeholder-photo" aria-hidden="true" style="margin-bottom:12px;">
+      <svg width="34" height="34" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="12" cy="8" r="4" fill="#f2a541"/>
+        <path d="M4 20c0-4.4 3.6-7 8-7s8 2.6 8 7" fill="#f2a541"/>
+      </svg>
+    </div>
+    <h2 style="margin:0 0 4px;">Program Director</h2>
+    <p class="muted" style="margin:0 0 8px;">Placeholder name &amp; photo</p>
+    <p style="margin:0;">Oversees case intake, volunteer coordination, and the organization's
+    day-to-day operations. Focused on making sure every report gets a real, timely response —
+    not just a form that disappears into a database.</p>
+  </div>
+
+  <div class="card">
+    <div class="placeholder-photo" aria-hidden="true" style="margin-bottom:12px;">
+      <svg width="34" height="34" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="12" cy="8" r="4" fill="#f2a541"/>
+        <path d="M4 20c0-4.4 3.6-7 8-7s8 2.6 8 7" fill="#f2a541"/>
+      </svg>
+    </div>
+    <h2 style="margin:0 0 4px;">Volunteer Coordinator</h2>
+    <p class="muted" style="margin:0 0 8px;">Placeholder name &amp; photo</p>
+    <p style="margin:0;">Recruits, trains, and organizes the volunteer network that responds
+    when a new case opens. Works to make sure no family is left searching alone.</p>
+  </div>
+
+  <div class="card">
+    <div class="placeholder-photo" aria-hidden="true" style="margin-bottom:12px;">
+      <svg width="34" height="34" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="12" cy="8" r="4" fill="#f2a541"/>
+        <path d="M4 20c0-4.4 3.6-7 8-7s8 2.6 8 7" fill="#f2a541"/>
+      </svg>
+    </div>
+    <h2 style="margin:0 0 4px;">Technology Lead</h2>
+    <p class="muted" style="margin:0 0 8px;">Placeholder name &amp; photo</p>
+    <p style="margin:0;">Builds and maintains the platform — the intake forms, the case
+    database, and the systems that will eventually connect tips to law enforcement partners.
+    Focused on keeping the system honest, secure, and actually working, not just looking
+    finished.</p>
+  </div>
+
+</div>
+{% endblock %}

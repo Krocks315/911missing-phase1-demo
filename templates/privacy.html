@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block title %}Privacy Policy — {{ org }}{% endblock %}
+{% block content %}
+<h1>Privacy Policy</h1>
+<div class="card" style="background:#fff4e6; border-color:#f0d5a8;">
+  <p style="margin:0;"><strong>DRAFT / PLACEHOLDER.</strong> This is a draft under legal review.
+  Nothing on this page is final, and it should not be relied on as a binding privacy commitment
+  until reviewed by counsel and formally adopted.</p>
+</div>
+
+<div class="card">
+  <h2 style="margin-top:0;">What We Collect</h2>
+  <p>When you submit a report, tip, or sighting, we collect what you enter — names,
+  descriptions, locations, dates, contact information if you provide it, and photos if you
+  upload them. If you allow location access in your browser, we may collect your device's GPS
+  coordinates at the time of submission.</p>
+
+  <h2>How We Use It</h2>
+  <p>Information submitted through this site is used to build and review missing-persons case
+  records and to connect tips and sightings to the right case. We do not sell, rent, or use
+  submitted information for advertising.</p>
+
+  <h2>Who Sees It</h2>
+  <p>Submissions are reviewed by authorized staff and volunteers of {{ org }}. In a production
+  system, relevant information may also be shared with law enforcement in connection with an
+  active case — that partnership is not yet in place, and this demo does not share any data
+  outside our own systems.</p>
+
+  <h2>Anonymous Submissions</h2>
+  <p>Contact information is optional on tip and sighting forms. You can submit without
+  identifying yourself.</p>
+
+  <h2>Data Security</h2>
+  <p>We take reasonable steps to protect submitted information, though no system can guarantee
+  complete security. Our data retention and security practices are still being finalized — see
+  the <a href="{{ url_for('data_retention') }}">Data Retention Note</a> and
+  <a href="{{ url_for('security') }}">Security &amp; Data Protection</a> page for current
+  status.</p>
+
+  <h2 style="margin-bottom:0;">Questions</h2>
+  <p style="margin:0;">privacy@findthemissing-demo.org <span class="muted">(placeholder)</span></p>
+</div>
+{% endblock %}

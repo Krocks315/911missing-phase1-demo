@@ -31,7 +31,24 @@ def supabase_headers():
 
 
 # Sample / placeholder cases only — invented people, never real case data.
+# Dana Marie Colton is a fully invented demonstration case used to prove the
+# end-to-end flow (case page -> sighting/tip forms -> demo admin review view).
+# She is NOT a real person and does not represent any real missing-persons case.
+DANA_CASE_SLUG = "dana-colton"
+
 SAMPLE_CASES = [
+    {
+        "name": "Dana Marie Colton",
+        "age": 34,
+        "last_seen": "Rest stop off Route 12, outside Millbrook Junction (a composite, fictional town) — June 14, 2026",
+        "status": "Active Search",
+        "status_color": "active",
+        "description": "Our one fully fleshed-out sample case, used to demonstrate the "
+        "complete flow end to end — case page, sighting reports, and tip submissions. "
+        "Entirely fictional. Not a real person.",
+        "detail_slug": DANA_CASE_SLUG,
+        "featured": True,
+    },
     {
         "name": "Jordan A. (placeholder)",
         "age": 27,
@@ -61,6 +78,60 @@ SAMPLE_CASES = [
     },
 ]
 
+# Full detail record for the one fully fleshed-out sample case (fictional).
+CASE_DETAIL = {
+    DANA_CASE_SLUG: {
+        "slug": DANA_CASE_SLUG,
+        "name": "Dana Marie Colton",
+        "age": 34,
+        "status": "Active Search",
+        "status_color": "active",
+        "last_seen_date": "June 14, 2026",
+        "last_seen_location": "Rest stop off Route 12, outside Millbrook Junction — a composite, fictional town invented for this demo. Not a real place.",
+        "physical_description": "5'6\", medium build, shoulder-length brown hair, brown eyes. "
+        "Last seen wearing a gray zip-up jacket and dark jeans.",
+        "circumstances": "Was traveling alone by car to visit family and had checked in by "
+        "phone the morning of June 14. No contact since that afternoon; her vehicle was "
+        "later found parked at the rest stop with no sign of what happened next. Family "
+        "reported her missing after two days without contact, which was out of character "
+        "for her. There is no indication of where she went from the rest stop or who, if "
+        "anyone, she may have been with.",
+        "why_public": "This case is shown publicly because visibility and tips from the "
+        "public are often the fastest way to develop new leads — someone who saw her at "
+        "the rest stop, along Route 12, or afterward may not realize what they saw matters "
+        "until they see this page.",
+        "fictional_note": "Dana Marie Colton is a composite, invented character created "
+        "solely to demonstrate how a case page works. \"Route 12\" and \"Millbrook Junction\" "
+        "are fictional and do not correspond to any real road or town. This does not "
+        "describe a real person or a real event.",
+    }
+}
+
+# Fabricated demo submissions shown on the admin-review mockup for Dana's case.
+# Invented data only — illustrates what a staff reviewer screen would show.
+DEMO_ADMIN_SUBMISSIONS = [
+    {
+        "kind": "Sighting",
+        "submitted": "June 16, 2026 · 9:42 AM",
+        "submitter": "Anonymous (no contact info provided)",
+        "location": "QuikTrip on Route 12, ~4 miles east of the rest stop (fictional, composite location)",
+        "notes": "Reported seeing a woman matching the description getting into a dark "
+        "sedan around 6 PM on June 14. Did not get a plate number.",
+        "photo": "No photo attached",
+        "review_status": "Pending triage",
+    },
+    {
+        "kind": "Tip",
+        "submitted": "June 17, 2026 · 2:15 PM",
+        "submitter": "M. Alvarez — (555) 010-0142 (demo contact)",
+        "location": "N/A",
+        "notes": "Says Dana mentioned car trouble in a text the morning of June 14 and "
+        "planned to stop for gas near Millbrook Junction.",
+        "photo": "N/A",
+        "review_status": "Pending triage",
+    },
+]
+
 
 @app.route("/health")
 def health():
@@ -75,6 +146,27 @@ def home():
 @app.route("/cases")
 def cases():
     return render_template("cases.html", cases=SAMPLE_CASES, org=ORG_NAME)
+
+
+@app.route("/cases/<slug>")
+def case_detail(slug):
+    case = CASE_DETAIL.get(slug)
+    if not case:
+        return redirect(url_for("cases"))
+    return render_template("case_detail.html", case=case, org=ORG_NAME)
+
+
+@app.route("/cases/<slug>/admin-review")
+def case_admin_review(slug):
+    case = CASE_DETAIL.get(slug)
+    if not case:
+        return redirect(url_for("cases"))
+    return render_template(
+        "admin_review.html",
+        case=case,
+        submissions=DEMO_ADMIN_SUBMISSIONS,
+        org=ORG_NAME,
+    )
 
 
 @app.route("/report", methods=["GET", "POST"])
@@ -274,6 +366,51 @@ POPULATED_STATES = {"Wyoming", "Oklahoma", "South Dakota", "Arizona", "Texas"}
 def resources():
     other_states = [s for s in ALL_STATES if s not in POPULATED_STATES]
     return render_template("resources.html", org=ORG_NAME, other_states=other_states)
+
+
+@app.route("/how-this-works")
+def how_this_works():
+    return render_template("how_this_works.html", org=ORG_NAME)
+
+
+@app.route("/partners")
+def partners():
+    return render_template("partners.html", org=ORG_NAME)
+
+
+@app.route("/about")
+def about():
+    return render_template("about.html", org=ORG_NAME)
+
+
+@app.route("/security")
+def security():
+    return render_template("security.html", org=ORG_NAME)
+
+
+@app.route("/privacy")
+def privacy():
+    return render_template("privacy.html", org=ORG_NAME)
+
+
+@app.route("/terms")
+def terms():
+    return render_template("terms.html", org=ORG_NAME)
+
+
+@app.route("/nonprofit-status")
+def nonprofit_status():
+    return render_template("nonprofit_status.html", org=ORG_NAME)
+
+
+@app.route("/data-retention")
+def data_retention():
+    return render_template("data_retention.html", org=ORG_NAME)
+
+
+@app.route("/law-enforcement-partnership")
+def law_enforcement_partnership():
+    return render_template("law_enforcement.html", org=ORG_NAME)
 
 
 if __name__ == "__main__":

@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block title %}Nonprofit Status — {{ org }}{% endblock %}
+{% block content %}
+<h1>Nonprofit Status</h1>
+
+<div class="card">
+  <p>{{ org }} intends to operate as a 501(c)(3) tax-exempt nonprofit organization.
+  <strong>Our IRS determination is currently pending — we are not yet a recognized 501(c)(3),
+  and this status should be treated as "in progress," not finalized.</strong></p>
+
+  <p>EIN: XX-XXXXXXX <span class="muted">(placeholder — will be updated once assigned)</span><br>
+  Status: Application in preparation <span class="muted">(placeholder)</span></p>
+
+  <h2>How Nonprofit Status Works, in Plain Terms</h2>
+  <p>A 501(c)(3) organization is recognized by the IRS as operating for a charitable,
+  educational, or public-benefit purpose. That status is what allows donations to be
+  tax-deductible for donors, and it comes with reporting requirements — annual filings, public
+  disclosure of certain financial information, and restrictions on political activity.
+  Organizations typically incorporate at the state level first, then apply to the IRS for
+  federal tax-exempt recognition.</p>
+
+  <p>We'll update this page with our actual EIN, filing date, and determination letter status as
+  soon as each is final. Until then, please treat any donation as a contribution to an
+  organization still completing its nonprofit filing — not yet a confirmed tax-deductible gift.</p>
+
+  <h2 style="margin-bottom:0;">Questions</h2>
+  <p style="margin:0;">nonprofit-status@findthemissing-demo.org <span class="muted">(placeholder)</span></p>
+</div>
+{% endblock %}
